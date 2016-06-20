@@ -42,11 +42,17 @@ int get_file_size(const char *filename)
 	int size = 0;
 
 	fl = fopen(filename, "rb");
-	fseek(fl, 0, SEEK_END);
-	size = ftell(fl);
-	fclose(fl);
-	
-	return size;
+
+	if (fl == NULL)
+		std::cout << "Error loading file. Are you sure that you typed the name in correctly?";
+	else 
+	{
+		fseek(fl, 0, SEEK_END);
+		size = ftell(fl);
+		fclose(fl);
+
+		return size;
+	}
 }
 
 //Counts the word count
